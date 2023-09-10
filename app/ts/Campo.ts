@@ -1,13 +1,16 @@
+
 export class Campo{
-    constructor(public nome:string){
+    constructor(private simbolo:string =' '){}
 
+    getJogador():string{
+        return this.simbolo;
     }
 
-    setNome(nome:string):void{
-        this.nome = nome;
-    }
-
-    getNome():void{
-        console.log(`Olá, meu nome é ${this.nome}`)
+    setJogador(jogada:string):void{
+        if(this.simbolo == ' '){
+            this.simbolo = jogada;
+        } else {
+            console.log("ERRO! Campo já usado!");
+        }
     }
 }

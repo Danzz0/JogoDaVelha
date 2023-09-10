@@ -2,14 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Campo = void 0;
 var Campo = /** @class */ (function () {
-    function Campo(nome) {
-        this.nome = nome;
+    function Campo(simbolo) {
+        if (simbolo === void 0) { simbolo = ' '; }
+        this.simbolo = simbolo;
     }
-    Campo.prototype.setNome = function (nome) {
-        this.nome = nome;
+    Campo.prototype.getJogador = function () {
+        return this.simbolo;
     };
-    Campo.prototype.getNome = function () {
-        console.log("Ol\u00E1, meu nome \u00E9 ".concat(this.nome));
+    Campo.prototype.setJogador = function (jogada) {
+        if (this.simbolo == ' ') {
+            this.simbolo = jogada;
+        }
+        else {
+            console.log("ERRO! Campo já usado!");
+        }
     };
     return Campo;
 }());

@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "outDir": "app/js",
-        "noEmitOnError": true
+        "noEmitOnError": false
     },
 
     "include": [
