@@ -10,6 +10,8 @@ var Campo = /** @class */ (function () {
         return this.simbolo;
     };
     Campo.prototype.setJogador = function (jogada) {
+        // Esse if() aqui é redundante
+        // testar o funcionamento do código sem o if() dps
         if (this.simbolo == ' ') {
             this.simbolo = jogada;
         }

@@ -17,14 +17,24 @@ class JogoDaVelha{
 
     public main():void{
 
+        
+
         while(this.game){
             this.geraTabu(this.tabu);
             this.vitoria = this.verificarVitoria(this.tabu);
             if(this.vitoria != ""){
                 console.log(`Jogador ${this.vitoria} venceu`);
+                break;
             } 
             try{
-        
+                if(this.verificarJogada(this.tabu, this.jogar(), this.jogadorAtual)){
+                    if(this.jogadorAtual == 'X'){
+                        this.jogadorAtual = 'O';
+                    } else {
+                        this.jogadorAtual = 'X';
+                    }
+                }
+                
             } catch(err){
                 console.log("ERRO")
             }
@@ -53,11 +63,26 @@ class JogoDaVelha{
             console.log("");
         }
     }
+    public jogar():number[]{
+        var m = leia.question("Digite os valores de linha e Coluna: ", (a:number,b:number) =>{
+            var vet:number[] = [a,b]
+            leia.close(); // pode ser que isso dê errado por conta do close()
+            return vet;
+            
+        })
+        
+        return m;
+        
+    }
 
 
-
-    public static verificarJogada(){
-
+    public verificarJogada(tabu:Campo[][], jogada:number[], jogador:string ):boolean{
+        if(tabu[jogada[0]][jogada[1]].getJogador() == ' ' ){
+            this.tabu[jogada[0]][jogada[1]].setJogador(jogador);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
