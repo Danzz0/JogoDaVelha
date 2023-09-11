@@ -26,10 +26,18 @@ class JogoDaVelha{
 
     public main():void{
 
-        this.iniciar(this.tabu)
+        this.iniciar(this.tabu);
         
+        this.mainLoop();
+        
+        
+    }
+
+
+
+    public mainLoop(){
         while(this.game){
-            this.geraTabu(this.tabu, 2);
+            this.geraTabu(this.tabu, 2); // pausa
             
             this.vitoria = this.verificarVitoria(this.tabu);
             if(this.vitoria != ""){
@@ -61,17 +69,13 @@ class JogoDaVelha{
                 console.log("ERRO: "+ err.message + "\n" + err.stack);
             }
 
-            if(this.geraTabu){
-                this.game = false;
-            }
+            // if(this.geraTabu){
+            //     this.game = false;
+            // }
         }
     }
 
-    public getGame():boolean{
-        return this.game;
-    }
 
-    
 
     public geraTabu(tabu:Campo[][], parImpar:number):void{
         
@@ -86,6 +90,9 @@ class JogoDaVelha{
             this.game = false;
         } else {
             this.game = true;
+            if(this.game){
+                this.mainLoop();
+            }
         }
         
     }

@@ -24,8 +24,11 @@ var JogoDaVelha = /** @class */ (function () {
     };
     JogoDaVelha.prototype.main = function () {
         this.iniciar(this.tabu);
+        this.mainLoop();
+    };
+    JogoDaVelha.prototype.mainLoop = function () {
         while (this.game) {
-            this.geraTabu(this.tabu, 2);
+            this.geraTabu(this.tabu, 2); // pausa
             this.vitoria = this.verificarVitoria(this.tabu);
             if (this.vitoria != "") {
                 console.log("Jogador ".concat(this.vitoria, " venceu"));
@@ -50,13 +53,10 @@ var JogoDaVelha = /** @class */ (function () {
             catch (err) {
                 console.log("ERRO: " + err.message + "\n" + err.stack);
             }
-            if (this.geraTabu) {
-                this.game = false;
-            }
+            // if(this.geraTabu){
+            //     this.game = false;
+            // }
         }
-    };
-    JogoDaVelha.prototype.getGame = function () {
-        return this.game;
     };
     JogoDaVelha.prototype.geraTabu = function (tabu, parImpar) {
         console.log("    0   1   2 ");
@@ -70,6 +70,9 @@ var JogoDaVelha = /** @class */ (function () {
         }
         else {
             this.game = true;
+            if (this.game) {
+                this.mainLoop();
+            }
         }
     };
     JogoDaVelha.prototype.limparTela = function () {
