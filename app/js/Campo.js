@@ -21,7 +21,7 @@ var Campo = /** @class */ (function () {
             return true;
         }
         else { // Se o campo já estiver sendo usado!
-            this.erro = "ERRO! Campo já usado!";
+            this.erro = "ERRO: Campo já usado!";
             return false;
         }
     };
