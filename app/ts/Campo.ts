@@ -1,9 +1,13 @@
 
 export class Campo{
+    public erro:string = "";
     constructor(private simbolo:string){}
 
     getJogador():string{
         return this.simbolo;
+    }
+    getErro():string{
+        return this.erro;
     }
 
     identify():number{
@@ -15,6 +19,7 @@ export class Campo{
             this.simbolo = jogada;
             return true;
         } else { // Se o campo já estiver sendo usado!
+            this.erro = "ERRO! Campo já usado!";
             return false
         }
     }

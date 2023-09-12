@@ -4,9 +4,13 @@ exports.Campo = void 0;
 var Campo = /** @class */ (function () {
     function Campo(simbolo) {
         this.simbolo = simbolo;
+        this.erro = "";
     }
     Campo.prototype.getJogador = function () {
         return this.simbolo;
+    };
+    Campo.prototype.getErro = function () {
+        return this.erro;
     };
     Campo.prototype.identify = function () {
         return 1;
@@ -17,6 +21,7 @@ var Campo = /** @class */ (function () {
             return true;
         }
         else { // Se o campo já estiver sendo usado!
+            this.erro = "ERRO! Campo já usado!";
             return false;
         }
     };
