@@ -43,9 +43,6 @@ class JogoDaVelha{
                 console.log("");
                 const num2 = readlineSync.question('Digite a coluna: ');
                 
-
-                
-                
                 
                 if(this.verificarJogada(this.jogar(Number(num1),Number(num2)), this.jogadorAtual)){
                     console.log("Deu certo");
@@ -56,11 +53,14 @@ class JogoDaVelha{
                     } else {
                         this.jogadorAtual = "X";
                     }
+
                     this.geraTabu(this.tabu, 3); // EITA COMO É RECURSIVO
+                } else {
+                    break;
                 }
                 
             } catch(err){
-                console.log("ERRO: "+ err.message + "\n" + err.stack);
+                console.log("ERRO IDENTIFICADO: "+ err.message + "\n" + err.stack);
             }
 
             // if(this.geraTabu){
@@ -104,13 +104,20 @@ class JogoDaVelha{
 
     public verificarJogada(jogada:number[], jogador:string ):boolean{
 
-        console.log(jogada)
-        console.log(this.tabu[jogada[0]][jogada[1]]) 
+        console.log(jogada);
+        console.log(this.tabu[jogada[0]][jogada[1]]);
+
+        // Esse if() não está funcionando! Concertar depois.
+        if(!(jogada[0]>=0 && jogada[0]<=2) || !(jogada[1]>=0 && jogada[1]<=2)){ //Verifica se o número está fora do intervalo
+            console.log("ERRO: Número fora do intervalo de 0 a 2!");  // caso esteja
+            var teste = false;
+        } else {
+            teste = this.tabu[jogada[0]][jogada[1]].setJogador(jogador);
+            console.log(teste);
+            console.log(this.tabu[jogada[0]][jogada[1]]);
+        }
         
-        var teste = this.tabu[jogada[0]][jogada[1]].setJogador(jogador);
-        console.log(teste)
-        console.log(this.tabu[jogada[0]][jogada[1]])
-        return teste
+        return teste;
         
          
     }

@@ -44,9 +44,12 @@ var JogoDaVelha = /** @class */ (function () {
                     }
                     this.geraTabu(this.tabu, 3); // EITA COMO É RECURSIVO
                 }
+                else {
+                    break;
+                }
             }
             catch (err) {
-                console.log("ERRO: " + err.message + "\n" + err.stack);
+                console.log("ERRO IDENTIFICADO: " + err.message + "\n" + err.stack);
             }
             // if(this.geraTabu){
             //     this.game = false;
@@ -83,9 +86,16 @@ var JogoDaVelha = /** @class */ (function () {
     JogoDaVelha.prototype.verificarJogada = function (jogada, jogador) {
         console.log(jogada);
         console.log(this.tabu[jogada[0]][jogada[1]]);
-        var teste = this.tabu[jogada[0]][jogada[1]].setJogador(jogador);
-        console.log(teste);
-        console.log(this.tabu[jogada[0]][jogada[1]]);
+        // Esse if() não está funcionando! Concertar depois.
+        if (!(jogada[0] >= 0 && jogada[0] <= 2) || !(jogada[1] >= 0 && jogada[1] <= 2)) { //Verifica se o número está fora do intervalo
+            console.log("ERRO: Número fora do intervalo de 0 a 2!"); // caso esteja
+            var teste = false;
+        }
+        else {
+            teste = this.tabu[jogada[0]][jogada[1]].setJogador(jogador);
+            console.log(teste);
+            console.log(this.tabu[jogada[0]][jogada[1]]);
+        }
         return teste;
     };
     // Função para verificar a vitória de algum jogador (Ainda irá ser implementado)
