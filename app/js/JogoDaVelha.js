@@ -5,7 +5,6 @@ var readlineSync = require("readline-sync");
 var JogoDaVelha = /** @class */ (function () {
     function JogoDaVelha() {
         this.tabu = new Array(3).fill([]).map(function () { return new Array(3); });
-        this.game = true;
         this.jogadorAtual = "X";
         this.vitoria = "";
     }
@@ -21,8 +20,9 @@ var JogoDaVelha = /** @class */ (function () {
         this.mainLoop();
     };
     JogoDaVelha.prototype.mainLoop = function () {
-        while (this.game) {
-            this.geraTabu(this.tabu, 2);
+        // var mensagemErro;
+        while (true) {
+            this.geraTabu(this.tabu);
             this.vitoria = this.verificarVitoria(this.tabu);
             if (this.vitoria != "") {
                 console.log("Jogador ".concat(this.vitoria, " venceu"));
@@ -36,27 +36,22 @@ var JogoDaVelha = /** @class */ (function () {
                 if (this.verificarJogada(this.jogar(Number(num1), Number(num2)), this.jogadorAtual)) {
                     console.log("Deu certo");
                     if (this.jogadorAtual == "X") {
-                        console.log("OII");
                         this.jogadorAtual = "O";
                     }
                     else {
                         this.jogadorAtual = "X";
                     }
-                    this.geraTabu(this.tabu, 3); // EITA COMO É RECURSIVO
                 }
                 else {
-                    break;
+                    // mensagemErro = "ERRO! Campo já usado!";
                 }
             }
             catch (err) {
                 console.log("ERRO IDENTIFICADO: " + err.message + "\n" + err.stack);
             }
-            // if(this.geraTabu){
-            //     this.game = false;
-            // }
         }
     };
-    JogoDaVelha.prototype.geraTabu = function (tabu, parImpar) {
+    JogoDaVelha.prototype.geraTabu = function (tabu) {
         this.limparTela();
         console.log("    0   1   2 ");
         console.log(" 0  ".concat(tabu[0][0].getJogador(), " | ").concat(tabu[0][1].getJogador(), " | ").concat(tabu[0][2].getJogador(), " "));
@@ -64,20 +59,12 @@ var JogoDaVelha = /** @class */ (function () {
         console.log(" 1  ".concat(tabu[1][0].getJogador(), " | ").concat(tabu[1][1].getJogador(), " | ").concat(tabu[1][2].getJogador(), " "));
         console.log("  -------------");
         console.log(" 2  ".concat(tabu[2][0].getJogador(), " | ").concat(tabu[2][1].getJogador(), " | ").concat(tabu[2][2].getJogador(), " "));
-        if (parImpar % 2 == 0) {
-            this.game = false;
-        }
-        else {
-            this.game = true;
-            if (this.game) {
-                this.mainLoop(); // DALE RECURSÃO
-            }
-        }
     };
     JogoDaVelha.prototype.limparTela = function () {
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < 10; i++) {
             console.log("");
         }
+        // console.log(mensagemErro);
     };
     JogoDaVelha.prototype.jogar = function (a, b) {
         var vet = [a, b];
@@ -85,8 +72,6 @@ var JogoDaVelha = /** @class */ (function () {
     };
     JogoDaVelha.prototype.verificarJogada = function (jogada, jogador) {
         console.log(jogada);
-        console.log(this.tabu[jogada[0]][jogada[1]]);
-        // Esse if() não está funcionando! Concertar depois.
         if (!(jogada[0] >= 0 && jogada[0] <= 2) || !(jogada[1] >= 0 && jogada[1] <= 2)) { //Verifica se o número está fora do intervalo
             console.log("ERRO: Número fora do intervalo de 0 a 2!"); // caso esteja
             var teste = false;
@@ -96,7 +81,7 @@ var JogoDaVelha = /** @class */ (function () {
             console.log(teste);
             console.log(this.tabu[jogada[0]][jogada[1]]);
         }
-        return teste;
+        return teste; // boolean
     };
     // Função para verificar a vitória de algum jogador (Ainda irá ser implementado)
     JogoDaVelha.prototype.verificarVitoria = function (tabu) {

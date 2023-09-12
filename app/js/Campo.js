@@ -12,14 +12,11 @@ var Campo = /** @class */ (function () {
         return 1;
     };
     Campo.prototype.setJogador = function (jogada) {
-        // Esse if() aqui é redundante
-        // testar o funcionamento do código sem o if() dps
-        if (this.simbolo == " ") {
+        if (this.simbolo == " ") { // Verifica se o campo está vazio
             this.simbolo = jogada;
             return true;
         }
-        else {
-            console.log("ERRO! Campo já usado!");
+        else { // Se o campo já estiver sendo usado!
             return false;
         }
     };
