@@ -25,6 +25,7 @@ var JogoDaVelha = /** @class */ (function () {
         while (true) {
             this.geraTabu(this.tabu, this.erroBool);
             this.vitoria = this.verificarVitoria(this.tabu);
+            console.log(this.vitoria);
             if (this.vitoria != "") {
                 console.log("Jogador ".concat(this.vitoria, " venceu"));
                 break;
@@ -92,7 +93,52 @@ var JogoDaVelha = /** @class */ (function () {
     };
     // Função para verificar a vitória de algum jogador (Ainda irá ser implementado)
     JogoDaVelha.prototype.verificarVitoria = function (tabu) {
-        return "";
+        var ooi;
+        for (var linha = 0; (linha < tabu.length); linha++) {
+            for (var coluna = 0; (coluna < tabu.length); coluna++) {
+                if (tabu[linha][coluna].getJogador() != " ") {
+                    if (tabu[linha][0].getJogador() == tabu[linha][coluna].getJogador()) {
+                        this.ganhaNaHorizontal += 1;
+                        console.log(this.ganhaNaHorizontal);
+                    }
+                    else if (tabu[0][linha].getJogador() == tabu[coluna][linha].getJogador()) {
+                        this.ganhaNaVertical += 1;
+                        console.log(this.ganhaNaVertical);
+                    }
+                    else if (tabu[linha][linha].getJogador() == tabu[coluna][coluna].getJogador()) {
+                        this.ganhaNaDiaglPrinc += 1;
+                        console.log(this.ganhaNaDiaglPrinc);
+                        // a00 = a00 = a11 = a22
+                        // a00 = a00 = a00 = a22
+                    }
+                }
+                else {
+                    return "";
+                }
+            }
+        }
+        for (var i = 0; i < tabu.length; i++) {
+            ooi = tabu[0][tabu.length - 1].getJogador();
+            if (ooi == tabu[i][tabu.length - 1 - i].getJogador()) {
+                this.ganhaNaDiagSec++;
+                console.log("DEU");
+            }
+            else {
+                break;
+            }
+        }
+        switch (3) {
+            case this.ganhaNaHorizontal:
+                return "Ganhou na horizontal!";
+            case this.ganhaNaVertical:
+                return "Ganhou na vertical!";
+            case this.ganhaNaDiaglPrinc:
+                return "Ganhou na diagonal";
+            case this.ganhaNaDiagSec:
+                return "Ganhou na diagonal";
+            default:
+                return "";
+        }
     };
     return JogoDaVelha;
 }());
