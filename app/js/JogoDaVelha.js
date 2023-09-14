@@ -93,40 +93,71 @@ var JogoDaVelha = /** @class */ (function () {
     };
     // Função para verificar a vitória de algum jogador (Ainda irá ser implementado)
     JogoDaVelha.prototype.verificarVitoria = function (tabu) {
-        var ooi;
-        for (var linha = 0; (linha < tabu.length); linha++) {
+        var horizontal;
+        var diagonalS;
+        var diagonalP;
+        var vertical;
+        for (var linha = 0; (linha < tabu.length); linha++) { // verifica na horizontal
             for (var coluna = 0; (coluna < tabu.length); coluna++) {
+                horizontal += tabu[linha][coluna].getJogador();
+                diagonalS += tabu[coluna][tabu.length - 1 - coluna].getJogador();
+                diagonalP += tabu[coluna][coluna].getJogador();
+                vertical += tabu[coluna][linha].getJogador();
+                analisaTabu(horizontal, vertical, diagonalP, diagonalS);
+            }
+        }
+        function analisaTabu(linhas, colunas, diag1, diag2) {
+            if (linhas == "XXX" || linhas == "OOO") {
+                console.log("Ganhou na horizontal");
+            }
+            else if (colunas == "XXX" || colunas == "OOO") {
+                console.log("Ganhou na vertical");
+            }
+            else if (diag1 == "XXX" || diag1 == "OOO") {
+                console.log("Ganhou na diagonal principal");
+            }
+            else if (diag2 == "XXX" || diag2 == "OOO") {
+                console.log("Ganhou na diagonal secundária");
+            }
+        }
+        // a00 = a00 = a11 = a22
+        // a00 = a00 = a00 = a22
+        /*
+        
+        
+
+        */
+        // for (let i = 0; i<tabu.length; i++){
+        //     ooi = tabu[0][tabu.length - 1].getJogador();
+        //     if(ooi == tabu[i][tabu.length - 1 - i].getJogador()){
+        //         this.ganhaNaDiagSec++
+        //         console.log("DEU")
+        //     } else {
+        //         break;
+        //     }
+        // }
+        /*for(let linha = 0; (linha < tabu.length); linha++){
+            for(let coluna = 0; (coluna < tabu.length); coluna++){
                 if (tabu[linha][coluna].getJogador() != " ") {
-                    if (tabu[linha][0].getJogador() == tabu[linha][coluna].getJogador()) {
+                    if(tabu[linha][0].getJogador() == tabu[linha][coluna].getJogador()){
                         this.ganhaNaHorizontal += 1;
-                        console.log(this.ganhaNaHorizontal);
-                    }
-                    else if (tabu[0][linha].getJogador() == tabu[coluna][linha].getJogador()) {
+                        console.log(this.ganhaNaHorizontal)
+    
+                    } else if(tabu[0][linha].getJogador() == tabu[coluna][linha].getJogador()){
                         this.ganhaNaVertical += 1;
-                        console.log(this.ganhaNaVertical);
-                    }
-                    else if (tabu[linha][linha].getJogador() == tabu[coluna][coluna].getJogador()) {
-                        this.ganhaNaDiaglPrinc += 1;
-                        console.log(this.ganhaNaDiaglPrinc);
+                        console.log(this.ganhaNaVertical)
+    
+                    } else if(tabu[linha][linha].getJogador() == tabu[coluna][coluna].getJogador()){
+                        this.ganhaNaDiaglPrinc += 1
+                        console.log(this.ganhaNaDiaglPrinc)
                         // a00 = a00 = a11 = a22
                         // a00 = a00 = a00 = a22
                     }
-                }
-                else {
+                } else {
                     return "";
                 }
             }
-        }
-        for (var i = 0; i < tabu.length; i++) {
-            ooi = tabu[0][tabu.length - 1].getJogador();
-            if (ooi == tabu[i][tabu.length - 1 - i].getJogador()) {
-                this.ganhaNaDiagSec++;
-                console.log("DEU");
-            }
-            else {
-                break;
-            }
-        }
+        }*/
         switch (3) {
             case this.ganhaNaHorizontal:
                 return "Ganhou na horizontal!";

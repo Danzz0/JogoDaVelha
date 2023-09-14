@@ -118,9 +118,55 @@ class JogoDaVelha{
 
     // Função para verificar a vitória de algum jogador (Ainda irá ser implementado)
     public verificarVitoria(tabu:Campo[][]):string{
-        var ooi;
+        var horizontal;
+        var diagonalS;
+        var diagonalP;
+        var vertical
+
+
+        for(let linha = 0; (linha < tabu.length); linha++){ // verifica na horizontal
+            for(let coluna = 0; (coluna < tabu.length); coluna++){
+                horizontal += tabu[linha][coluna].getJogador();
+                diagonalS += tabu[coluna][tabu.length - 1 - coluna].getJogador();
+                diagonalP += tabu[coluna][coluna].getJogador();
+                vertical += tabu[coluna][linha].getJogador();
+                analisaTabu(horizontal,vertical,diagonalP,diagonalS);
+            }
+        }
         
-        for(let linha = 0; (linha < tabu.length); linha++){
+        function analisaTabu(linhas,colunas,diag1,diag2){
+            if(linhas == "XXX" || linhas == "OOO"){
+                console.log("Ganhou na horizontal")
+            } else if(colunas == "XXX" || colunas == "OOO"){
+                console.log("Ganhou na vertical")
+            } else if(diag1 == "XXX" || diag1 == "OOO"){
+                console.log("Ganhou na diagonal principal")
+            } else if(diag2 == "XXX" || diag2 == "OOO"){
+                console.log("Ganhou na diagonal secundária")
+            }
+        }
+        
+        
+
+        // a00 = a00 = a11 = a22
+        // a00 = a00 = a00 = a22
+
+        /*
+        
+        
+
+        */
+        // for (let i = 0; i<tabu.length; i++){
+        //     ooi = tabu[0][tabu.length - 1].getJogador();
+        //     if(ooi == tabu[i][tabu.length - 1 - i].getJogador()){
+        //         this.ganhaNaDiagSec++
+        //         console.log("DEU")
+        //     } else {
+        //         break;
+        //     }
+        // }
+        
+        /*for(let linha = 0; (linha < tabu.length); linha++){
             for(let coluna = 0; (coluna < tabu.length); coluna++){
                 if (tabu[linha][coluna].getJogador() != " ") {
                     if(tabu[linha][0].getJogador() == tabu[linha][coluna].getJogador()){
@@ -141,19 +187,7 @@ class JogoDaVelha{
                     return "";
                 }
             }
-        }
-        
-        for (let i = 0; i<tabu.length; i++){
-            ooi = tabu[0][tabu.length - 1].getJogador();
-            if(ooi == tabu[i][tabu.length - 1 - i].getJogador()){
-                this.ganhaNaDiagSec++
-                console.log("DEU")
-            } else {
-                break;
-            }
-        }
-        
-        
+        }*/
         
     
         
