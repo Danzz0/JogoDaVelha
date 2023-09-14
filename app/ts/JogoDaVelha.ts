@@ -38,7 +38,7 @@ class JogoDaVelha{
 
             
             this.vitoria = this.verificarVitoria(this.tabu);
-            console.log(this.vitoria)
+            // console.log(this.vitoria)
             if(this.vitoria != ""){
                 console.log(`Jogador ${this.vitoria} venceu`);
                 break;
@@ -118,98 +118,81 @@ class JogoDaVelha{
 
     // Função para verificar a vitória de algum jogador (Ainda irá ser implementado)
     public verificarVitoria(tabu:Campo[][]):string{
-        var horizontal;
-        var diagonalS;
-        var diagonalP;
-        var vertical
+        var horizontal = "";
+        var diagonalS  = "";
+        var diagonalP  = "";
+        var vertical   = "";
+        var retorno    = "";
+
+
+        /*
+   [     [0,1,2],
+         [0,1,2],
+         [0,1,2]   ]
+        
+        */
 
 
         for(let linha = 0; (linha < tabu.length); linha++){ // verifica na horizontal
             for(let coluna = 0; (coluna < tabu.length); coluna++){
                 horizontal += tabu[linha][coluna].getJogador();
-                diagonalS += tabu[coluna][tabu.length - 1 - coluna].getJogador();
-                diagonalP += tabu[coluna][coluna].getJogador();
+
                 vertical += tabu[coluna][linha].getJogador();
+                diagonalP += tabu[coluna][coluna].getJogador();
+                diagonalS += tabu[coluna][tabu.length - 1 - coluna].getJogador();
+
                 analisaTabu(horizontal,vertical,diagonalP,diagonalS);
+                
+                  if(horizontal.length >= 3){
+                    horizontal = "";
+                    
+                } if(vertical.length >= 3){
+
+                    vertical = "";
+                } if(diagonalP.length >= 3){
+
+                    diagonalP = "";
+                } if(diagonalS.length >= 3){
+
+                    diagonalS = "";
+                }
+
+                if(retorno != ""){
+                    break;
+                }
+               
+            }
+            if(retorno != ""){
+                break;
             }
         }
         
         function analisaTabu(linhas,colunas,diag1,diag2){
+
+            //TESTAR DPS
             if(linhas == "XXX" || linhas == "OOO"){
-                console.log("Ganhou na horizontal")
+                
+                retorno = `${linhas} ganhou na horizontal`;
+
             } else if(colunas == "XXX" || colunas == "OOO"){
-                console.log("Ganhou na vertical")
+                retorno = `${colunas} ganhou na vertical`;
+
             } else if(diag1 == "XXX" || diag1 == "OOO"){
-                console.log("Ganhou na diagonal principal")
+                retorno = `${diag1} ganhou na diagonal principal`;
+                
             } else if(diag2 == "XXX" || diag2 == "OOO"){
-                console.log("Ganhou na diagonal secundária")
+                retorno = `${diag2} ganhou na diagonal secundária`;
+            } else {
+
+                retorno = "";
             }
         }
-        
-        
+
+        return retorno;
 
         // a00 = a00 = a11 = a22
         // a00 = a00 = a00 = a22
 
-        /*
-        
-        
-
-        */
-        // for (let i = 0; i<tabu.length; i++){
-        //     ooi = tabu[0][tabu.length - 1].getJogador();
-        //     if(ooi == tabu[i][tabu.length - 1 - i].getJogador()){
-        //         this.ganhaNaDiagSec++
-        //         console.log("DEU")
-        //     } else {
-        //         break;
-        //     }
-        // }
-        
-        /*for(let linha = 0; (linha < tabu.length); linha++){
-            for(let coluna = 0; (coluna < tabu.length); coluna++){
-                if (tabu[linha][coluna].getJogador() != " ") {
-                    if(tabu[linha][0].getJogador() == tabu[linha][coluna].getJogador()){
-                        this.ganhaNaHorizontal += 1;
-                        console.log(this.ganhaNaHorizontal)
-    
-                    } else if(tabu[0][linha].getJogador() == tabu[coluna][linha].getJogador()){
-                        this.ganhaNaVertical += 1;
-                        console.log(this.ganhaNaVertical)
-    
-                    } else if(tabu[linha][linha].getJogador() == tabu[coluna][coluna].getJogador()){
-                        this.ganhaNaDiaglPrinc += 1
-                        console.log(this.ganhaNaDiaglPrinc)
-                        // a00 = a00 = a11 = a22
-                        // a00 = a00 = a00 = a22
-                    } 
-                } else {
-                    return "";
-                }
-            }
-        }*/
-        
-    
-        
-
-        switch(3){
-            
-            case this.ganhaNaHorizontal:
-                
-                return "Ganhou na horizontal!";
-            case this.ganhaNaVertical:
-                return "Ganhou na vertical!";
-            case this.ganhaNaDiaglPrinc:
-                return "Ganhou na diagonal";
-            case this.ganhaNaDiagSec:
-                return "Ganhou na diagonal";
-            default:
-                return "";
-        }
-        
-        
-
-        
 
         
     }
