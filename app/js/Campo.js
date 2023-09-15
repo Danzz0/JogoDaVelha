@@ -12,9 +12,6 @@ var Campo = /** @class */ (function () {
     Campo.prototype.getErro = function () {
         return this.erro;
     };
-    Campo.prototype.identify = function () {
-        return 1;
-    };
     Campo.prototype.setJogador = function (jogada) {
         if (this.simbolo == " ") { // Verifica se o campo está vazio
             this.simbolo = jogada;
