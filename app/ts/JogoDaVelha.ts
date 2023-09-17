@@ -1,7 +1,7 @@
 import { Campo } from './Campo';
-import * as readlineSync from 'readline-sync';
+// import * as readlineSync from 'readline-sync';
 
-class JogoDaVelha{
+export class JogoDaVelha{
 
     public tabu:Campo[][] = new Array<Array<Campo>>(3).fill([]).map(() => new Array<Campo>(3));
     public jogadorAtual:string = "X";
@@ -44,12 +44,12 @@ class JogoDaVelha{
             } 
             try{ // pede as jogadas dos usuários
                 console.log("")
-                const num1 = readlineSync.question('Digite a linha: ');
+                // const num1 = readlineSync.question('Digite a linha: ');
                 console.log("");
-                const num2 = readlineSync.question('Digite a coluna: ');
+                // const num2 = readlineSync.question('Digite a coluna: ');
                 
                 
-                if(this.verificarJogada(this.jogar(Number(num1),Number(num2)), this.jogadorAtual)){
+                if(this.verificarJogada(this.jogar(Number(2),Number(2)), this.jogadorAtual)){
                     // veirifica se a jogada é válida e atualiza o tabuleiro caso a mesma seja (todo o método retorna um boolean)
                     
                     if(this.jogadorAtual == "X"){ // atualiza o turno dos jogadores
@@ -205,6 +205,5 @@ class JogoDaVelha{
 
 }
 
-let jogo = new JogoDaVelha(); // cria o objeto
-jogo.main(); // chama o método principal
+
 

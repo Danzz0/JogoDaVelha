@@ -2,7 +2,8 @@
     "compilerOptions": {
         "target": "es5",
         "outDir": "app/js",
-        "noEmitOnError": false
+        "noEmitOnError": false,
+        "module": "System"
     },
 
     "include": [

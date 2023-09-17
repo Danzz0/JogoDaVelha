@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container-fluid bg-primary text-center">
+        <small><h1>Container fluid </h1></small>
+    </div>
+
+    <br>
+
+    <div class="container text-center indigo-200 tabela">
+        <div class=""><h1>Container</h1></div>
+        
+        <div class="row justify-content-center ">
+            
+            <div class="col-md-8 bg-black tabela ">
+                <table class="table rounded table-dark table-hover mb-0 table-bordered">
+                    <thead class="">
+                        <tr>
+                            
+                            <th scope="col" class="">0</th>
+                            <th scope="col">1</th>
+                            <th scope="col">2</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider ">
+                        <tr>
+                            
+                            <td>X</td>
+                            <td>O</td>
+                            <td>X</td>
+
+                        </tr>
+                        <tr>
+                            
+                            
+                            <td>O</td>
+                            <td>O</td>
+                            <td>O</td>
+
+                        </tr>
+                        <tr>
+                            
+                            <td>X</td>
+                            <td>X</td>
+                            <td>X</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div><br>
+        <div class="row justify-content-around">
+            <div class="col-md-4 ">
+                <input class="number rounded" type="number" name="" id="num">
+            </div>
+            <div class="col-md-4 ">
+                <Button class="joga rounded">Jogar</Button>
+            </div>
+        </div>
+        
+        
+
+        
+        
+    </div>
+
+    <!-- <button onclick="ola()">Velha</button> -->
+    <br><br>
+    <!-- <button onclick="">Velha</button> -->
+
+    <script src="lib/system.js"></script>
+    <script>
+        System.defaultJSExtensions = true;
+        System.import('js/app/app.js').catch(console.error.bind(console));
+    </script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

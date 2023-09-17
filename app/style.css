@@ -1,0 +1,29 @@
+.tabela{
+    padding:0px;
+    font-size: 70px;
+    border-radius: 20px;
+}
+
+.indigo-200{
+    color: #000;
+    background-color: #c29ffa;
+}
+
+.indigo-300{
+    color: #000;
+    background-color: #a370f7;
+}
+
+.number{
+    width: 50%;
+    font-size: 30%;
+}
+
+.joga{
+    font-size: 30%;
+}
+
+.cel{
+    border-radius: 30px;
+    border:none;
+}
